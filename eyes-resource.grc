@@ -1,5 +1,5 @@
 HEADER APPLICATION "eyes" "geoEyes" "V1.0" {
 dostype PRG
-author "Stefan Haubenthal"
+author "Stefan Haubenthal & Big Pickle"
 info "The famous follow the mouse demo."
 }
