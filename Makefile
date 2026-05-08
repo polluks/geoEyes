@@ -7,6 +7,10 @@ eyes.cvt: eyes.cvt.c eyes-resource.grc
 	grc65 -tgeos eyes-resource.grc
 	cl65 -tgeos -Os -o eyes.cvt eyes.cvt.c eyes-resource.s
 
+eyes-comp.cvt: eyes.cvt.c eyes-resource.grc
+	grc65 -tgeos eyes-resource.grc
+	cl65 -tgeos -Os -DSPR_EXP_Y -o eyes-comp.cvt eyes.cvt.c eyes-resource.s
+
 clean:
 	rm -f eyes.cvt eyes-resource.s eyes-resource.o eyes.cvt.o
 
