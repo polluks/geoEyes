@@ -3,7 +3,7 @@
 
 all: eyes.cvt
 
-eyes.cvt: eyes.cvt.c eyes-resource.grc
+eyes.cvt: eyes.cvt.c eyes-resource.grc pupil_comp.inc
 	grc65 -tgeos eyes-resource.grc
 	cl65 -tgeos -Os -o eyes.cvt eyes.cvt.c eyes-resource.s
 
