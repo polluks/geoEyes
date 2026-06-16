@@ -1,4 +1,3 @@
-# Das große GEOS Buch (Auflage 3)_text.pdf, S. 197
 # geoEyes - xeyes lookalike for GEOS using VIC-II sprites
 
 SP65 ?= sp65
@@ -23,5 +22,6 @@ gen-sprite: pupil_comp.inc
 clean:
 	rm -f eyes.cvt eyes-resource.s eyes-resource.o eyes.cvt.o pupil_data.inc pupil_comp.inc
 
+# Das große GEOS Buch (Auflage 3)_text.pdf, S. 197
 buch:
 	tr '[:upper:]' '[:lower:]' <clock.bas | petcat -w2 -o clock.prg
