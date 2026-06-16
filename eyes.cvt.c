@@ -42,7 +42,9 @@ static void get_pupil_pos(int mx, int my, int ex, int ey,
 {
     int dx = mx - ex;
     int dy = my - ey;
-    int dist = isqrt((unsigned)(dx*dx + dy*dy));
+    unsigned adx = dx < 0 ? -(unsigned)dx : (unsigned)dx;
+    unsigned ady = dy < 0 ? -(unsigned)dy : (unsigned)dy;
+    int dist = isqrt(adx * adx + ady * ady);
     if (dist > PUPIL_MAX && dist > 0) {
         dx = dx * PUPIL_MAX / dist;
         dy = dy * PUPIL_MAX / dist;

@@ -4,8 +4,8 @@
 all: eyes.cvt
 
 eyes.cvt: eyes.cvt.c eyes-resource.grc pupil_comp.inc
-	grc65 -tgeos eyes-resource.grc
-	cl65 -tgeos -Os -o eyes.cvt eyes.cvt.c eyes-resource.s
+	grc65 -tgeos-cbm eyes-resource.grc
+	cl65 -tgeos-cbm -Os -o eyes.cvt eyes.cvt.c eyes-resource.s
 
 clean:
 	rm -f eyes.cvt eyes-resource.s eyes-resource.o eyes.cvt.o
