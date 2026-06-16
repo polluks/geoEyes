@@ -64,11 +64,8 @@ int main(void)
     DrawSprite(2, pupil);
     moby2 |= 0x06;
 
-    mcmclr0 = 1;
-    mcmclr1 = 11;
     mob1clr = 0;
     mob2clr = 0;
-    mobmcm |= 0x06;
 
     draw_eye(LEFT_EX, LEFT_EY);
     draw_eye(RIGHT_EX, RIGHT_EY);
