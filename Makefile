@@ -1,7 +1,5 @@
 # geoEyes - xeyes lookalike for GEOS using VIC-II sprites
 
-SP65 ?= sp65
-
 all: eyes.cvt
 
 eyes.cvt: eyes.cvt.c eyes-resource.grc pupil_data.c
@@ -9,7 +7,7 @@ eyes.cvt: eyes.cvt.c eyes-resource.grc pupil_data.c
 	cl65 -tgeos-cbm -Os -o eyes.cvt eyes.cvt.c eyes-resource.s
 
 pupil_data.c: pupil.pcx
-	$(SP65) -r pupil.pcx -c vic2-sprite -w pupil_data.c
+	sp65 -r pupil.pcx -c vic2-sprite -w pupil_data.c
 
 clean:
 	rm -f eyes.cvt eyes-resource.s eyes-resource.o eyes.cvt.o pupil_data.c
