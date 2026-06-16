@@ -4,7 +4,7 @@ all: eyes.cvt
 
 eyes.cvt: eyes.cvt.c eyes-resource.grc pupil_data.c
 	grc65 -tgeos-cbm eyes-resource.grc
-	cl65 -tgeos-cbm -Os -o eyes.cvt eyes.cvt.c eyes-resource.s
+	cl65 -tgeos-cbm -Os -o $@ eyes.cvt.c eyes-resource.s
 
 pupil_data.c: pupil.pcx
 	sp65 -r $< -c vic2-sprite -w $@
