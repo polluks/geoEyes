@@ -11,9 +11,6 @@ eyes.cvt: eyes.cvt.c eyes-resource.grc pupil_data.c
 pupil_data.c: pupil.pcx
 	$(SP65) -r pupil.pcx -c vic2-sprite -w pupil_data.c
 
-gen-sprite: pupil_data.c
-	@echo "  sprite data regenerated from pupil.pcx"
-
 clean:
 	rm -f eyes.cvt eyes-resource.s eyes-resource.o eyes.cvt.o pupil_data.c
 
