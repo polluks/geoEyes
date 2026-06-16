@@ -8,8 +8,8 @@
 #define EYE_RY      30
 #define PUPIL_MAX   12
 
-static const char pupil[33] = {
-#include "pupil_comp.inc"
+static const char pupil[63] = {
+#include "pupil_data.c"
 };
 
 static const char eye_span[] = {
@@ -62,7 +62,6 @@ int main(void)
 
     DrawSprite(1, pupil);
     DrawSprite(2, pupil);
-    moby2 |= 0x06;
 
     mob1clr = 0;
     mob2clr = 0;
