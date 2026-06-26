@@ -3,5 +3,5 @@ dostype PRG
 author "Stefan Haubenthal"
 info "The famous follow the mouse demo."
 mode 40only
-icon "eye_icon.raw"
+icon "eye_icon.bin"
 }
