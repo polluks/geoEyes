@@ -2,9 +2,12 @@
 
 all: eyes.cvt
 
-eyes.cvt: eyes.cvt.c eyes-resource.grc pupil_data.c
+eyes.cvt: eyes.cvt.c eyes-resource.grc pupil_data.c eye_icon.raw
 	grc65 -tgeos-cbm eyes-resource.grc
 	cl65 -tgeos-cbm -Os -o $@ eyes.cvt.c eyes-resource.s
+
+eye_icon.raw: pupil_data.c
+	python3 -c "import re; f=open('pupil_data.c'); b=[int(x,16) for x in re.findall(r'0x([0-9A-Fa-f]{2})',f.read())]; open('eye_icon.raw','wb').write(bytes(b))"
 
 pupil_data.c: pupil.pcx
 	sp65 -r $< -c vic2-sprite -w $@
