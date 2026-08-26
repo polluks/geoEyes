@@ -1,5 +1,7 @@
 # geoEyes
 
+![xeyes](xeyes.png)
+
 xeyes lookalike for GEOS on the Commodore 64, using VIC-II hardware sprites.
 
 Based on [a2d desk.acc/eyes.s](https://github.com/a2stuff/a2d/blob/main/desk.acc/eyes.s).
