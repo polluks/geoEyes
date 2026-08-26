@@ -4,7 +4,6 @@
 #define LEFT_EY     90
 #define RIGHT_EX    225
 #define RIGHT_EY    90
-#define EYE_RX      25
 #define EYE_RY      30
 #define PUPIL_MAX   12
 
@@ -17,12 +16,12 @@ static const char eye_span[] = {
     22, 23, 23, 23, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25, 25,
 };
 
-static unsigned isqrt(unsigned n)
+static unsigned isqrt(unsigned long n)
 {
-    unsigned r = 0;
+    unsigned long r = 0;
     while (r * r < n) ++r;
     if (r * r > n) --r;
-    return r;
+    return (unsigned)r;
 }
 
 static void draw_eye(unsigned cx, char cy)
@@ -44,7 +43,7 @@ static void get_pupil_pos(int mx, int my, int ex, int ey,
     int dy = my - ey;
     unsigned adx = dx < 0 ? -(unsigned)dx : (unsigned)dx;
     unsigned ady = dy < 0 ? -(unsigned)dy : (unsigned)dy;
-    int dist = isqrt(adx * adx + ady * ady);
+    int dist = isqrt((unsigned long)adx * adx + (unsigned long)ady * ady);
     if (dist > PUPIL_MAX && dist > 0) {
         dx = dx * PUPIL_MAX / dist;
         dy = dy * PUPIL_MAX / dist;
