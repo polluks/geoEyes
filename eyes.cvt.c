@@ -31,7 +31,7 @@ static void draw_eye(unsigned cx, char cy)
         unsigned idx = EYE_RY - (dy < 0 ? (unsigned)-dy : (unsigned)dy);
         unsigned hw = eye_span[idx];
         if (hw > 0) {
-            HorizontalLine(1, cy + dy, cx - hw, cx + hw);
+            HorizontalLine(0xff, cy + dy, cx - hw, cx + hw);
         }
     }
 }
