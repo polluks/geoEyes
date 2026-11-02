@@ -18,10 +18,21 @@ static const char eye_span[] = {
 
 static unsigned isqrt(unsigned long n)
 {
-    unsigned long r = 0;
-    while (r * r < n) ++r;
-    if (r * r > n) --r;
-    return (unsigned)r;
+    unsigned long root = 0;
+    unsigned long bit = 1UL << 30;
+
+    while (bit > n)
+        bit >>= 2;
+    while (bit != 0) {
+        if (n >= root + bit) {
+            n -= root + bit;
+            root = (root >> 1) + bit;
+        } else {
+            root >>= 1;
+        }
+        bit >>= 2;
+    }
+    return (unsigned)root;
 }
 
 static void draw_eye(unsigned cx, char cy)
@@ -61,34 +72,36 @@ int main(void)
 
     ClearRam(SCREEN_BASE, SC_SIZE);
 
+    /* Sprite 0 is the GEOS mouse pointer, so keep it free. */
+    DrawSprite(1, pupil);
     DrawSprite(2, pupil);
     DrawSprite(3, pupil);
-    DrawSprite(0, pupil);
-    DrawSprite(1, pupil);
+    DrawSprite(4, pupil);
 
-    mob2clr = 1;
-    mob3clr = 1;
-    mob0clr = 0;
     mob1clr = 0;
+    mob2clr = 0;
+    mob3clr = 1;
+    mob4clr = 1;
 
-    mobx2 = 0x0c;
-    moby2 = 0x0c;
+    /* Expand sprites 3/4 (the white eye balls) to 48x42. */
+    mobx2 |= 0x18;
+    moby2 |= 0x18;
 
     draw_eye(LEFT_EX, LEFT_EY);
     draw_eye(RIGHT_EX, RIGHT_EY);
 
     lpos.x = LEFT_EX - 24;
     lpos.y = LEFT_EY - 21;
-    PosSprite(2, &lpos);
+    PosSprite(3, &lpos);
 
     lpos.x = RIGHT_EX - 24;
     lpos.y = RIGHT_EY - 21;
-    PosSprite(3, &lpos);
+    PosSprite(4, &lpos);
 
-    EnablSprite(0);
     EnablSprite(1);
     EnablSprite(2);
     EnablSprite(3);
+    EnablSprite(4);
 
     StartMouseMode();
 
@@ -100,20 +113,22 @@ int main(void)
         get_pupil_pos(mx, my, LEFT_EX, LEFT_EY, &px, &py);
         lpos.x = (unsigned)(px > 12 ? px - 12 : 0);
         lpos.y = (char)(py > 10 ? py - 10 : 0);
-        PosSprite(0, &lpos);
+        PosSprite(1, &lpos);
 
         get_pupil_pos(mx, my, RIGHT_EX, RIGHT_EY, &px, &py);
         rpos.x = (unsigned)(px > 12 ? px - 12 : 0);
         rpos.y = (char)(py > 10 ? py - 10 : 0);
-        PosSprite(1, &rpos);
+        PosSprite(2, &rpos);
 
         Sleep(1);
     }
 
-    DisablSprite(0);
     DisablSprite(1);
     DisablSprite(2);
     DisablSprite(3);
+    DisablSprite(4);
+    mobx2 &= ~0x18;
+    moby2 &= ~0x18;
     ClearMouseMode();
 
     EnterDeskTop();
